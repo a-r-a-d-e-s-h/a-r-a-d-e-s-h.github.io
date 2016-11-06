@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>Animated kana</title>
+<script type="text/javascript">
+
+function setup () {
+ var types = ["hiragana", "katakana"];
+ for(var i=0;i<types.length;i++){
+  (function() {
+  var type = types[i];
+  var e = document.querySelectorAll("." + type + ".table td");
+  for(var j=0;j<e.length;j++){
+    (function(){
+    var elem = e[j];
+    var charName = elem.innerHTML;
+    if(!charName){
+     return;
+    }
+    elem.innerHTML = "";
+    var small = loadKana(charName, type, "gif", "small");
+    var img = small.querySelector('img');
+    img.addEventListener("mouseover", function() {hover(charName, type);});
+    elem.appendChild(small);
+    var anim = loadKana(charName, type, "gif", "anim");
+    elem.appendChild(anim);
+   }());
+  }
+  }());
+ }
+}
+
+function loadKana(char, type, format, style) {
+ var directory = type + "/" + style + "/";
+ var imgSrc = directory + char + "." + format;
+ var newE = document.createElement("img");
+ newE.setAttribute("src", imgSrc);
+ var newDiv = document.createElement("div");
+ newDiv.setAttribute("class", type+" "+style);
+ newDiv.appendChild(newE);
+ return newDiv;
+}
+
+function hover(charName, type){
+ var elem = document.getElementById('large-display-image');
+ var imgSrc = type + "/" + "big" + "/" + charName + ".png";
+ elem.setAttribute('src', imgSrc);
+}
+
+</script>
+
+<style>
+.small{
+ position:relative;
+ width:29px;
+}
+
+.small:hover + div {
+ opacity:1.0;
+ z-index:1;
+}
+
+.small:hover + .anim img{
+ display:inline;
+}
+
+div.anim{
+ position:absolute;
+ opacity:0;
+ border-style:solid;
+ border-width:2px;
+ z-index:0;
+ width:160px;
+ height:160px;
+}
+
+.anim img{
+ display:none;
+}
+
+.tables {
+ position:relative;
+ float:left;
+}
+
+#large-display-image {
+ position:relative;
+ float:left;
+ left:150px;
+}
+
+
+</style>
+
+</head>
+<body onload="setup();">
+<div class="tables">
+<table class="hiragana table">
+<tr>
+<td>wa</td> <td>ra</td> <td>ya</td> <td>ma</td> <td>ha</td> <td>na</td> <td>ta</td> <td>sa</td> <td>ka</td> <td>a</td>
+</tr>
+<tr>
+<td></td> <td>ri</td> <td></td> <td>mi</td> <td>hi</td> <td>ni</td> <td>chi</td> <td>shi</td> <td>ki</td> <td>i</td>
+</tr>
+<tr>
+<td>n</td> <td>ru</td> <td>yu</td> <td>mu</td> <td>fu</td> <td>nu</td> <td>tsu</td> <td>su</td> <td>ku</td> <td>u</td>
+</tr>
+<tr>
+<td></td> <td>re</td> <td></td> <td>me</td> <td>he</td> <td>ne</td> <td>te</td> <td>se</td> <td>ke</td> <td>e</td>
+</tr>
+<tr>
+<td>wo</td> <td>ro</td> <td>yo</td> <td>mo</td> <td>ho</td> <td>no</td> <td>to</td> <td>so</td> <td>ko</td> <td>o</td>
+</tr>
+</table>
+
+<table class="katakana table">
+<tr>
+<td>wa</td> <td>ra</td> <td>ya</td> <td>ma</td> <td>ha</td> <td>na</td> <td>ta</td> <td>sa</td> <td>ka</td> <td>a</td>
+</tr>
+<tr>
+<td></td> <td>ri</td> <td></td> <td>mi</td> <td>hi</td> <td>ni</td> <td>chi</td> <td>shi</td> <td>ki</td> <td>i</td>
+</tr>
+<tr>
+<td>n</td> <td>ru</td> <td>yu</td> <td>mu</td> <td>fu</td> <td>nu</td> <td>tsu</td> <td>su</td> <td>ku</td> <td>u</td>
+</tr>
+<tr>
+<td></td> <td>re</td> <td></td> <td>me</td> <td>he</td> <td>ne</td> <td>te</td> <td>se</td> <td>ke</td> <td>e</td>
+</tr>
+<tr>
+<td>wo</td> <td>ro</td> <td>yo</td> <td>mo</td> <td>ho</td> <td>no</td> <td>to</td> <td>so</td> <td>ko</td> <td>o</td>
+</tr>
+</table>
+</div>
+
+<div id="large-display"><img id="large-display-image"></img></div>
+
+</body>
+</html>
