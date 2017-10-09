@@ -1,0 +1,42 @@
+﻿.stroke-image {
+ height:109px;
+ background-image: url('images/20170_frames.png');
+ background-position: 0px 0px;
+}
+
+.kanji-container {
+ width:109px;
+ position: relative;
+ display: inline-block;
+ margin: 0px 10px;
+}
+
+.navi-links {
+ position: relative;
+ padding: 2px 0px 2px 5px;
+}
+
+.navi-button-container {
+ width: 50%;
+ padding-right: 5px;
+ display: inline-block;
+ box-sizing: border-box;
+}
+
+.navi-button {
+ background-color: gainsboro;
+ text-align: center;
+ cursor: pointer;
+}
+
+.nav-bar {
+ margin-bottom: 5px;
+}
+
+.nav-bar a {
+ margin: 0px 10px;
+}
+
+.nav-bar a.selected {
+    background-color: gainsboro;
+}
